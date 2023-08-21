@@ -1,4 +1,4 @@
- create sequence hibernate_sequence start 1 increment 1;
+create sequence hibernate_sequence start 1 increment 1;
 
     create table comments (
        id int8 not null,
@@ -126,7 +126,7 @@
         asset_file_size INT DEFAULT 0,
         asset_file_updated_at timestamp,
         asset_file_url varchar(1024),
-        asset_type VARCHAR(255) COMMENT 'document or image or audio or video.',
+        asset_type VARCHAR(255),
         bucket_name varchar(512),
         context varchar(255),
         is_deleted BOOLEAN DEFAULT FALSE,
@@ -143,6 +143,9 @@
         user_id int8,
         primary key (id)
     );
+
+    comment on column studio_assets.asset_type is
+        'document or image or audio or video.';
 
     create table studio_user_requests (
        studio_id int8 not null,
